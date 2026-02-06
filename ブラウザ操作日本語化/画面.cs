@@ -14,6 +14,11 @@ public class 画面
     {
     }
 
+    public 画面(string url)
+    {
+        ブラウザ.移動する(url);
+    }
+
     /// <summary>
     /// 画面のタイトル
     /// </summary>

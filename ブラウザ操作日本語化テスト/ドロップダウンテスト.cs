@@ -6,62 +6,43 @@ namespace ブラウザ操作日本語化テスト;
 [TestClass]
 public sealed class ドロップダウンテスト : Webユニットテスト
 {
-    public class テスト画面 : 画面
+    private FormPage画面 画面;
+    public ドロップダウンテスト() : base()
     {
-        public ドロップダウン ドロップダウン;
-
-        private テスト画面() : base()
-        {
-            ブラウザ.移動する("https://www.selenium.dev/selenium/web/formPage.html");
-            ドロップダウン = new ドロップダウン(By.Name("selectomatic"));
-        }
-        public static テスト画面 移動する()
-        {
-            return new テスト画面();
-        }
-
-        public テスト画面 Twoを選択する()
-        {
-            ドロップダウン.選択する("Two");
-            return this;
-        }
-        public テスト画面 Fourを選択する()
-        {
-            ドロップダウン.値で選択する("four");
-            return this;
-        }
-        public テスト画面 StillLearningHowToCountApparentlyを選択する()
-        {
-            ドロップダウン.順番で選択する(3);
-            return this;
-        }
-
-        public bool Twoが選択されている =>
-            ドロップダウン.選択された選択肢.文字列 == "Two";
-        public bool Fourが選択されている =>
-            ドロップダウン.選択された選択肢.文字列 == "Four";
-        public bool StillLearningHowToCountApparentlyが選択されている =>
-            ドロップダウン.選択された選択肢.文字列 == "Still learning how to count, apparently";
+        this.画面 = FormPage画面.移動する();
     }
+
+    private void Twoを選択する()
+    {
+        this.画面.ドロップダウン.選択する("Two");
+    }
+    private void Fourを選択する()
+    {
+        this.画面.ドロップダウン.値で選択する("four");
+    }
+    private void StillLearningHowToCountApparentlyを選択する()
+    {
+        this.画面.ドロップダウン.順番で選択する(3);
+    }
+
+    private bool Twoが選択されている =>
+        this.画面.ドロップダウン.選択された選択肢.文字列 == "Two";
+    private bool Fourが選択されている =>
+        this.画面.ドロップダウン.選択された選択肢.文字列 == "Four";
+    private bool StillLearningHowToCountApparentlyが選択されている =>
+        this.画面.ドロップダウン.選択された選択肢.文字列 == "Still learning how to count, apparently";
 
     [TestMethod]
     public void SelectOption()
     {
-        var 画面 = テスト画面.移動する();
+        Fourを選択する();
+        Assert.IsTrue(Fourが選択されている);
 
-        // var 選択肢のリスト = テスト画面.ドロップダウン.選択肢を取得する;
-        // var twoElement = 選択肢のリスト[1];
-        // var fourElement = 選択肢のリスト[2];
-        // var countElement = 選択肢のリスト[3];
+        Twoを選択する();
+        Assert.IsTrue(Twoが選択されている);
 
-        画面.Fourを選択する();
-        Assert.IsTrue(画面.Fourが選択されている);
-
-        画面.Twoを選択する();
-        Assert.IsTrue(画面.Twoが選択されている);
-
-        画面.StillLearningHowToCountApparentlyを選択する();
-        Assert.IsTrue(画面.StillLearningHowToCountApparentlyが選択されている);
+        StillLearningHowToCountApparentlyを選択する();
+        Assert.IsTrue(StillLearningHowToCountApparentlyが選択されている);
     }
 
     // [TestMethod]
