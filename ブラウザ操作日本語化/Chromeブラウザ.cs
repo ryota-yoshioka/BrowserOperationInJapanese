@@ -1,29 +1,29 @@
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace ブラウザ操作日本語化;
 
-public class Chromeブラウザ
+/// <summary>
+/// 使用するブラウザの選択（Chrome）
+/// </summary>
+public class Chromeブラウザ : ブラウザ
 {
-    public static void 起動する()
+    public Chromeブラウザ() : base(new Chromeドライバ())
     {
-        // string userDataDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-        // Directory.CreateDirectory(userDataDir);
+    }
+    public Chromeブラウザ(ChromeOptions options) : base(new Chromeドライバ(options))
+    {
+    }
+
+    public static Chromeブラウザ 起動する()
+    {
         var options = new ChromeOptions()
         {
             //BrowserVersion = null
         };
-        // options.AddArgument($"--user-data-dir={userDataDir}");
+        //options.AddArgument($"--user-data-dir={userDataDir}");
         options.AddArgument("--no-sandbox");
         options.AddArgument("--disable-dev-shm-usage");
-        Webユニットテスト.Webドライバ = new ChromeDriver(options);
-    }
-
-    public static void 終了する()
-    {
-        if (Webユニットテスト.Webドライバ == null)
-        {
-            return;
-        }
-        Webユニットテスト.Webドライバ.Quit();
+        return new Chromeブラウザ(options);
     }
 }

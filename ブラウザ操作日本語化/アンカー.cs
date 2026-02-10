@@ -9,20 +9,28 @@ namespace ブラウザ操作日本語化;
 /// コンストラクタ
 /// </remarks>
 /// <param name="by">アンカーのBy</param>
-public class アンカー(By by) : Web要素(by)
+public class アンカー : フォーム要素
 {
-
-    /// <summary>
-    /// クリックする
-    /// </summary>
-    public void クリックする()
+    private アンカー(Web要素 要素) : base(要素)
     {
-        // クリックする処理
-        element.Click();
+    }
+
+    public static アンカー ById(画面 親画面, string id)
+    {
+        return new アンカー(親画面.Idで要素を探す(id));
+    }
+    public static アンカー ByTagName(画面 親画面, string tagName)
+    {
+        return new アンカー(親画面.TagNameで要素を探す(tagName));
     }
 
     public String? 文字列
     {
-        get { return element.Text; }
+        get { return インターフェース.テキスト; }
+    }
+
+    public void クリックする()
+    {
+        インターフェース.クリックする();
     }
 }

@@ -9,15 +9,24 @@ namespace ブラウザ操作日本語化;
 /// コンストラクタ
 /// </remarks>
 /// <param name="by">ラジオボタンのBy</param>
-public class ラジオボタン(By by) : Web要素(by)
+public class ラジオボタン : フォーム要素
 {
-    /// <summary>
-    /// クリックする
-    /// </summary>
+    private ラジオボタン(Web要素 要素) : base(要素)
+    {
+    }
+
+    public static ラジオボタン ById(画面 親画面, string id)
+    {
+        return new ラジオボタン(親画面.Idで要素を探す(id));
+    }
+    public static ラジオボタン ByName(画面 親画面, string name)
+    {
+        return new ラジオボタン(親画面.Nameで要素を探す(name));
+    }
+
     public void クリックする()
     {
-        // クリックする処理
-        element.Click();
+        インターフェース.クリックする();
     }
 
     /// <summary>
@@ -26,9 +35,9 @@ public class ラジオボタン(By by) : Web要素(by)
     public void 選択する()
     {
         // 選択する処理
-        if (!element.Selected)
+        if (!インターフェース.選択されている)
         {
-            element.Click();
+            インターフェース.クリックする();
         }
     }
 
@@ -37,13 +46,6 @@ public class ラジオボタン(By by) : Web要素(by)
     //     get { return element.Text; }
     // }
 
-    public Boolean 選択されている
-    {
-        get { return element.Selected; }
-    }
-
-    public Boolean 選択されていない
-    {
-        get { return !element.Selected; }
-    }
+    public Boolean 選択されている => インターフェース.選択されている;
+    public Boolean 選択されていない => !インターフェース.選択されている;
 }

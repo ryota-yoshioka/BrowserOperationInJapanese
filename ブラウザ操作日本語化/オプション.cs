@@ -6,71 +6,38 @@ namespace ブラウザ操作日本語化;
 /// <summary>
 /// 操作するオプション（ドロップダウンの選択肢）の基底クラス
 /// </summary>
-public class オプション : Web要素
+public class オプション : フォーム要素
 {
-    private readonly ドロップダウン _親ドロップダウン;
+    private readonly ドロップダウン 親ドロップダウン;
 
-    public オプション(ドロップダウン 親ドロップダウン, By by) : base(by)
+    public オプション(ドロップダウン 親ドロップダウン, Web要素 要素) : base(要素)
     {
-        this._親ドロップダウン = 親ドロップダウン;
-    }
-
-    public オプション(ドロップダウン 親ドロップダウン, IWebElement element) : base(element)
-    {
-        this._親ドロップダウン = 親ドロップダウン;
-    }
-
-    /// <summary>
-    /// クリックする
-    /// </summary>
-    public void クリックする()
-    {
-        // クリックする処理
-        element.Click();
+        this.親ドロップダウン = 親ドロップダウン;
     }
 
     /// <summary>
     /// 選択する
     /// </summary>
-    public void 選択する(string 文字列)
+    public void 選択する()
     {
-        // 選択する処理
-        var select = new SelectElement(element);
-        select.SelectByText(文字列);
-    }
-
-    /// <summary>
-    /// 値で選択する
-    /// </summary>
-    public void 値で選択する(string 値)
-    {
-        // 選択する処理
-        var select = new SelectElement(element);
-        select.SelectByValue(値);
-    }
-
-    /// <summary>
-    /// 順番で選択する
-    /// </summary>
-    public void 順番で選択する(int 順番)
-    {
-        // 選択する処理
-        var select = new SelectElement(element);
-        select.SelectByIndex(順番);
+        if (!選択されている)
+        {
+            インターフェース.クリックする();
+        }
     }
 
     public String 文字列
     {
-        get { return element.Text; }
+        get { return インターフェース.テキスト; }
     }
 
     public Boolean 選択されている
     {
-        get { return element.Selected; }
+        get { return インターフェース.選択されている; }
     }
 
     public Boolean 選択されていない
     {
-        get { return !element.Selected; }
+        get { return !インターフェース.選択されている; }
     }
 }

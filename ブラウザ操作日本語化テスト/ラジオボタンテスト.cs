@@ -1,11 +1,9 @@
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using ブラウザ操作日本語化;
 
 namespace ブラウザ操作日本語化テスト;
 
 [TestClass]
-public sealed class ラジオボタンテスト : Webユニットテスト
+public sealed class ラジオボタンテスト
 {
     [TestMethod]
     public void TestMethod1()

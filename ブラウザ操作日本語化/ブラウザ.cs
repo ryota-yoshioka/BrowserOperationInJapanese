@@ -1,21 +1,31 @@
 namespace ブラウザ操作日本語化;
 
-public class ブラウザ
+public abstract class ブラウザ
 {
+    public Webドライバ ドライバ;
+
+    public ブラウザ(Webドライバ ドライバ)
+    {
+        this.ドライバ = ドライバ;
+    }
+
+    public void 閉じる()
+    {
+        ドライバ?.終了する();
+    }
+
     /// <summary>
     /// 指定されたURLに移動する
     /// </summary>
     /// <param name="url">移動先のURL</param>
-    public static void 移動する(string url)
+    public void 移動する(string url)
     {
-        Webユニットテスト.Webドライバ.Navigate().GoToUrl(url);
+        ドライバ.ナビゲートする(url);
     }
 
-    /// <summary>
-    /// 画面を閉じる
-    /// </summary>
-    public static void 閉じる()
+    public int 暗黙の待機秒数
     {
-        Webユニットテスト.Webドライバ.Close();
+        get => ドライバ.デフォルトの待機秒数;
+        set => ドライバ.デフォルトの待機秒数 = value;
     }
 }

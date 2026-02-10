@@ -1,6 +1,3 @@
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-
 namespace ブラウザ操作日本語化;
 
 /// <summary>
@@ -11,92 +8,48 @@ namespace ブラウザ操作日本語化;
 /// </remarks>
 /// <param name="driver">WebDriver</param>
 /// <param name="by">ドロップダウンのBy</param>
-public class ドロップダウン(By by) : Web要素(by)
+public class ドロップダウン : フォーム要素
 {
-    public IList<オプション> 選択された全てのオプション
+    private ドロップダウン(Web要素 要素) : base(要素)
+    {
+    }
+    public static ドロップダウン ById(画面 親画面, string id)
+    {
+        return new ドロップダウン(親画面.Idで要素を探す(id));
+    }
+    public static ドロップダウン ByName(画面 親画面, string name)
+    {
+        return new ドロップダウン(親画面.Nameで要素を探す(name));
+    }
+
+    public IList<オプション> 全ての選択されたオプション
     {
         get
         {
-            return [.. new SelectElement(element)
-                        .AllSelectedOptions
+            return [.. インターフェース
+                        .全ての選択された選択肢()
                         .Select(e => new オプション(this, e))];
         }    
     }
 
-    public bool 複数選択可能
-    {
-        get
-        {
-            return new SelectElement(element).IsMultiple;
-        }
-    }
+    public bool 複数選択可能 => インターフェース.複数選択可能;
 
-    public IList<オプション> 選択肢を取得する
+    public IList<オプション> 全てのオプションを取得する
     {
         get
         {
-            return [.. new SelectElement(element)
-                        .Options
+            return [.. インターフェース
+                        .選択肢のリスト()
                         .Select(e => new オプション(this, e))];
         }
     }
 
-    public オプション 選択された選択肢
+    public オプション 選択されたオプション
     {
         get
         {
-            return new オプション(this, new SelectElement(element).SelectedOption);
+            return new オプション(this, インターフェース.選択された選択肢);
         }
-    }
-
-    public IWebElement WrappedElement
-    {
-        get
-        {
-            return new SelectElement(element).WrappedElement;
-        }
-    }
-
-    public void DeselectAll()
-    {
-        var select = new SelectElement(element);
-        select.DeselectAll();
-    }
-
-    public void DeselectByIndex(int index)
-    {
-        var select = new SelectElement(element);
-        select.DeselectByIndex(index);
-    }
-
-    public void DeselectByText(string text)
-    {
-        var select = new SelectElement(element);
-        select.DeselectByText(text);
-    }
-
-    public void DeselectByValue(string value)
-    {
-        var select = new SelectElement(element);
-        select.DeselectByValue(value);
-    }
-
-    public void SelectByIndex(int index)
-    {
-        var select = new SelectElement(element);
-        select.SelectByIndex(index);
-    }
-
-    public void SelectByText(string text)
-    {
-        var select = new SelectElement(element);
-        select.SelectByText(text);
-    }
-
-    public void SelectByValue(string value)
-    {
-        var select = new SelectElement(element);
-        select.SelectByValue(value);
     }
 
     /// <summary>
@@ -104,9 +57,7 @@ public class ドロップダウン(By by) : Web要素(by)
     /// </summary>
     public void 選択する(string 文字列)
     {
-        // 選択する処理
-        var select = new SelectElement(element);
-        select.SelectByText(文字列);
+        インターフェース.テキストで選択する(文字列);
     }
 
     /// <summary>
@@ -114,9 +65,7 @@ public class ドロップダウン(By by) : Web要素(by)
     /// </summary>
     public void 値で選択する(string 値)
     {
-        // 選択する処理
-        var select = new SelectElement(element);
-        select.SelectByValue(値);
+        インターフェース.値で選択する(値);
     }
 
     /// <summary>
@@ -124,9 +73,7 @@ public class ドロップダウン(By by) : Web要素(by)
     /// </summary>
     public void 順番で選択する(int 順番)
     {
-        // 選択する処理
-        var select = new SelectElement(element);
-        select.SelectByIndex(順番);
+        インターフェース.順番で選択する(順番);
     }
 
     // public String? 文字列
@@ -136,11 +83,11 @@ public class ドロップダウン(By by) : Web要素(by)
 
     public Boolean 選択されている
     {
-        get { return element.Selected; }
+        get { return インターフェース.選択されている; }
     }
 
     public Boolean 選択されていない
     {
-        get { return !element.Selected; }
+        get { return !インターフェース.選択されている; }
     }
 }

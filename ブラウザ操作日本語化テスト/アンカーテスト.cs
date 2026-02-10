@@ -1,10 +1,9 @@
-using OpenQA.Selenium;
 using ブラウザ操作日本語化;
 
 namespace ブラウザ操作日本語化テスト;
 
 [TestClass]
-public sealed class アンカーテスト : Webユニットテスト
+public sealed class アンカーテスト
 {
     [TestMethod]
     public void TestMethod1()

@@ -1,5 +1,3 @@
-using OpenQA.Selenium;
-
 namespace ブラウザ操作日本語化;
 
 /// <summary>
@@ -9,15 +7,24 @@ namespace ブラウザ操作日本語化;
 /// コンストラクタ
 /// </remarks>
 /// <param name="by">チェックボックスのBy</param>
-public class チェックボックス(By by) : Web要素(by)
+public class チェックボックス : フォーム要素
 {
-    /// <summary>
-    /// クリックする
-    /// </summary>
+    private チェックボックス(Web要素 要素) : base(要素)
+    {
+    }
+
+    public static チェックボックス ById(画面 親画面, string id)
+    {
+        return new チェックボックス(親画面.Idで要素を探す(id));
+    }
+    public static チェックボックス ByTagName(画面 親画面, string tagName)
+    {
+        return new チェックボックス(親画面.TagNameで要素を探す(tagName));
+    }
+
     public void クリックする()
     {
-        // クリックする処理
-        element.Click();
+        インターフェース.クリックする();
     }
 
     /// <summary>
@@ -26,9 +33,9 @@ public class チェックボックス(By by) : Web要素(by)
     public void 選択する()
     {
         // 選択する処理
-        if (!element.Selected)
+        if (!インターフェース.選択されている)
         {
-            element.Click();
+            インターフェース.クリックする();
         }
     }
 
@@ -38,9 +45,9 @@ public class チェックボックス(By by) : Web要素(by)
     public void 解除する()
     {
         // 解除する処理
-        if (element.Selected)
+        if (インターフェース.選択されている)
         {
-            element.Click();
+            インターフェース.クリックする();
         }
     }
 
@@ -49,13 +56,6 @@ public class チェックボックス(By by) : Web要素(by)
     //     get { return element.Text; }
     // }
 
-    public Boolean 選択されている
-    {
-        get { return element.Selected; }
-    }
-
-    public Boolean 選択されていない
-    {
-        get { return !element.Selected; }
-    }
+    public Boolean 選択されている => インターフェース.選択されている;
+    public Boolean 選択されていない => !インターフェース.選択されている;
 }

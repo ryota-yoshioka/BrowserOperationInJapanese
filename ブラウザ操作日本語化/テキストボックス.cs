@@ -9,22 +9,33 @@ namespace ブラウザ操作日本語化;
 /// コンストラクタ
 /// </remarks>
 /// <param name="by">テキストボックスのBy</param>
-public class テキストボックス(By by) : Web要素(by)
+public class テキストボックス : フォーム要素
 {
+    private テキストボックス(Web要素 要素) : base(要素)
+    {
+    }
+
+    public static テキストボックス ById(画面 親画面, string id)
+    {
+        return new テキストボックス(親画面.Idで要素を探す(id));
+    }
+    public static テキストボックス ByTagName(画面 親画面, string tagName)
+    {
+        return new テキストボックス(親画面.TagNameで要素を探す(tagName));
+    }
+
     /// <summary>
     /// テキストを入力する
     /// </summary>
     /// <param name="text">入力するテキスト</param>
-    public void 入力する(string text)
+    public void 入力する(string テキスト)
     {
-        // テキストを入力する処理
-        element.Clear();
-        element.SendKeys(text);
+        インターフェース.キー入力を送る(テキスト);
     }
 
     public String? 文字列
     {
-        set { element.Clear(); element.SendKeys(value!); }
-        get { return element.GetAttribute("value"); }
+        set { インターフェース.キー入力を送る(value!); }
+        get { return インターフェース.属性を取得する("value"); }
     }
 }
