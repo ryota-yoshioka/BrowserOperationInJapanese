@@ -10,6 +10,7 @@ namespace SeleniumDocs.Elements
             // WebDriver driver = new ChromeDriver();
             var ブラウザ = ブラウザ操作日本語化テスト.テスト共通.ブラウザ!;
             // driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
+            // TODO ブラウザ.暗黙の待機時間 = TimeSpan.FromMilliseconds(500);
             ブラウザ.暗黙の待機秒数 = 5;
 
             // // Navigate to Url
@@ -55,6 +56,7 @@ namespace SeleniumDocs.Elements
             Assert.AreEqual(cssValue, "13.3333px");
 
             // // GetText
+
             // // Retrieves the text of the element
             // string text = driver.FindElement(By.TagName("h1")).Text;
             string text = new フォーム要素(画面.TagNameで要素を探す("h1")).文字列;
