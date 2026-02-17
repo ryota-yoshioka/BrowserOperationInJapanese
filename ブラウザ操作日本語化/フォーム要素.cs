@@ -29,6 +29,10 @@ public class フォーム要素
     {
         get { return インターフェース.テキスト; }
     }
+    public void キー入力を送る(string キー入力)
+    {
+        インターフェース.キー入力を送る(キー入力);
+    }
 
     // public void テキストを入力する(string テキスト)
     // {

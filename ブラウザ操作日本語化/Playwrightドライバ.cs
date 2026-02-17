@@ -29,6 +29,7 @@ public class Playwrightドライバ : ドライバーインターフェース, �
     private IPage ページ => ブラウザ.Contexts[0].Pages[0];
 
     public String タイトル => ページ.TitleAsync().Result;
+    public String ページソース => ページ.ContentAsync().Result;
     public 画面要素インターフェース Idで要素を探す(string id)
     {
         return new Playwright要素(ページ.Locator($"#{id}"));
@@ -40,5 +41,21 @@ public class Playwrightドライバ : ドライバーインターフェース, �
     public 画面要素インターフェース TagNameで要素を探す(string tagName)
     {
         return new Playwright要素(ページ.Locator($"{tagName}"));
+    }
+    public 画面インターフェース Idでフレームを探す(string id)
+    {
+        var フレーム = ページ.FrameLocator(id);
+        // TODO: 構造設計の再検討
+        // ブラウザ     -> ドライバインターフェース
+        // 画面         -> 画面インターフェース
+        // フレーム     -> 画面インターフェース
+        // ポップアップ -> 画面インターフェース
+        // ダイアログ   -> 画面インターフェース
+        // var インターフェース = new Playwrightドライバ(this.ドライバ, ブラウザ);
+        return this;
+    }
+    public 画面インターフェース Nameでフレームを探す(string name)
+    {
+        throw new NotImplementedException();
     }
 }

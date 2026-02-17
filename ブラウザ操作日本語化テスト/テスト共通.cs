@@ -10,10 +10,10 @@ public class テスト共通
     [AssemblyInitialize]
     public static void テスト開始時(TestContext context)
     {
-        // ブラウザ = new Chromeブラウザ();
+        ブラウザ = new Chromeブラウザ();
         // ブラウザ = new Edgeブラウザ();
         // ブラウザ = Playwrightブラウザ.Chromeを起動する();
-        ブラウザ = Playwrightブラウザ.Edgeを起動する();
+        // ブラウザ = Playwrightブラウザ.Edgeを起動する();
     }
 
     [AssemblyCleanup]

@@ -6,7 +6,7 @@ namespace ブラウザ操作日本語化;
 public class 画面
 {
     #pragma warning disable CA1859
-    private readonly 画面インターフェース インターフェース;
+    protected readonly 画面インターフェース インターフェース;
     #pragma warning restore CA1859
 
     /// <summary>
@@ -28,6 +28,8 @@ public class 画面
     /// </summary>
     public String タイトル => インターフェース.タイトル;
 
+    public String ページソース => インターフェース.ページソース;
+
     public 画面要素インターフェース Idで要素を探す(string id)
     {
         return インターフェース.Idで要素を探す(id);
@@ -39,5 +41,14 @@ public class 画面
     public 画面要素インターフェース TagNameで要素を探す(string tagName)
     {
         return インターフェース.TagNameで要素を探す(tagName);
+    }
+
+    public 画面インターフェース Idでフレームを探す(string id)
+    {
+        return インターフェース.Idでフレームを探す(id);
+    }
+    public 画面インターフェース Nameでフレームを探す(string name)
+    {
+        return インターフェース.Nameでフレームを探す(name);
     }
 }

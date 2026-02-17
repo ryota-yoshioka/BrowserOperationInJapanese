@@ -2,15 +2,15 @@ using OpenQA.Selenium;
 
 namespace ブラウザ操作日本語化;
 
-public class Seleniumドライバ : ドライバーインターフェース, 画面インターフェース
+public class Seleniumフレーム : ドライバーインターフェース, 画面インターフェース
 {
     private readonly IWebDriver ドライバ;
-    private readonly String ウィンドウハンドル;
+    private readonly int 番号;
 
-    public Seleniumドライバ(IWebDriver ドライバ)
+    public Seleniumフレーム(IWebDriver ドライバ, int 番号)
     {
-        this.ドライバ = ドライバ;
-        ウィンドウハンドル = ドライバ.CurrentWindowHandle;
+        this.ドライバ = ドライバ.SwitchTo().Frame(番号);
+        this.番号 = 番号;
     }
 
     public 画面インターフェース 先頭画面 => this;
@@ -19,7 +19,8 @@ public class Seleniumドライバ : ドライバーインターフェース, 画
     {
         get
         {
-            ドライバ.SwitchTo().Window(this.ウィンドウハンドル);
+            ドライバ.SwitchTo().DefaultContent();
+            ドライバ.SwitchTo().Frame(番号);
             return ドライバ.PageSource;
         }
     }
@@ -44,29 +45,35 @@ public class Seleniumドライバ : ドライバーインターフェース, 画
     // public abstract void スクリーンショットを保存する(string ファイルパス);
     public 画面要素インターフェース Idで要素を探す(string id)
     {
-        ドライバ.SwitchTo().Window(this.ウィンドウハンドル);
+        ドライバ.SwitchTo().DefaultContent();
+        ドライバ.SwitchTo().Frame(番号);
         return new Selenium要素(ドライバ.FindElement(By.Id(id)));
     }
     public 画面要素インターフェース Nameで要素を探す(string name)
     {
-        ドライバ.SwitchTo().Window(this.ウィンドウハンドル);
+        ドライバ.SwitchTo().DefaultContent();
+        ドライバ.SwitchTo().Frame(番号);
         return new Selenium要素(ドライバ.FindElement(By.Name(name)));
     }
     public 画面要素インターフェース TagNameで要素を探す(string tagName)
     {
-        ドライバ.SwitchTo().Window(this.ウィンドウハンドル);
+        ドライバ.SwitchTo().DefaultContent();
+        ドライバ.SwitchTo().Frame(番号);
         return new Selenium要素(ドライバ.FindElement(By.TagName(tagName)));
     }
     public 画面インターフェース Idでフレームを探す(string id)
     {
-        ドライバ.SwitchTo().Window(this.ウィンドウハンドル);
+        ドライバ.SwitchTo().DefaultContent();
+        ドライバ.SwitchTo().Frame(番号);
         var フレームのリスト = ドライバ.FindElements(By.TagName("iframe"));
         var フレーム = ドライバ.FindElement(By.Id(id));
+        var フレームの番号 = -1;
         foreach(var(element, index) in フレームのリスト.Select((e,i) => (e,i)))
         {
-            if (フレーム.GetAttribute("id") == element.GetAttribute("id"))
+            if (フレーム == element)
             {
-                return new Seleniumフレーム(ドライバ, index);
+                フレームの番号 = index;
+                return new Seleniumフレーム(ドライバ, フレームの番号);
             }
         }
         throw new NotFoundException();
@@ -80,15 +87,18 @@ public class Seleniumドライバ : ドライバーインターフェース, 画
         //  - TODO: ドライバ.SwitchTo().Frame(番号)
         // - Seleniumアラート（モーダルダイアログ）
         //  - TODO: ドライバ.SwitchTo().Alert() IAlert
-        ドライバ.SwitchTo().Window(this.ウィンドウハンドル);
+        ドライバ.SwitchTo().DefaultContent();
+        ドライバ.SwitchTo().Frame(番号);
 
         var フレームのリスト = ドライバ.FindElements(By.TagName("iframe"));
         var フレーム = ドライバ.FindElement(By.Name(name));
+        var フレームの番号 = -1;
         foreach(var(element, index) in フレームのリスト.Select((e,i) => (e,i)))
         {
-            if (フレーム.GetAttribute("id") == element.GetAttribute("id"))
+            if (フレーム == element)
             {
-                return new Seleniumフレーム(ドライバ, index);
+                フレームの番号 = index;
+                return new Seleniumフレーム(ドライバ, フレームの番号);
             }
         }
         throw new NotFoundException();
