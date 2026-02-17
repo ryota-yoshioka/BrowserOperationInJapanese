@@ -7,7 +7,7 @@ public class FormPage画面 : 画面
     public ドロップダウン ドロップダウン;
     public ドロップダウン selectElement;
 
-    private FormPage画面() : base(テスト共通.ブラウザ!, "https://www.selenium.dev/selenium/web/formPage.html")
+    private FormPage画面() : base(テスト共通.ブラウザ!.先頭画面, "https://www.selenium.dev/selenium/web/formPage.html")
     {
         this.ドロップダウン = ドロップダウン.ByName(this, "selectomatic");
         this.selectElement = ドロップダウン.ByName(this, "multi");

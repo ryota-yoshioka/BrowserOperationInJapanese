@@ -46,6 +46,6 @@ public class ラジオボタン : フォーム要素
     //     get { return element.Text; }
     // }
 
-    public Boolean 選択されている => インターフェース.チェックされている;
+    public new Boolean 選択されている => インターフェース.チェックされている;
     public Boolean 選択されていない => !インターフェース.チェックされている;
 }

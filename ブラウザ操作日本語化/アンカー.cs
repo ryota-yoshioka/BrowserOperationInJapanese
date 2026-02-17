@@ -24,11 +24,6 @@ public class アンカー : フォーム要素
         return new アンカー(親画面.TagNameで要素を探す(tagName));
     }
 
-    public String? 文字列
-    {
-        get { return インターフェース.テキスト; }
-    }
-
     public void クリックする()
     {
         インターフェース.クリックする();

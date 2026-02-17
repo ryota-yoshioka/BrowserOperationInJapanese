@@ -42,6 +42,10 @@ public class Web要素 : 画面要素インターフェース
     {
         return element.GetAttribute(attributeName);
     }
+    public string Css属性を取得する(string cssName)
+    {
+        return element.GetCssValue(cssName);
+    }
 
     public bool 選択されている => element.Selected;
     public bool チェックされている => element.Selected;

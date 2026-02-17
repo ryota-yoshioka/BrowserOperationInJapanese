@@ -12,7 +12,7 @@ public class WebForm画面 : 画面
     public ラジオボタン Checkedラジオボタン;
     public ラジオボタン Defaultラジオボタン;
 
-    private WebForm画面() : base(テスト共通.ブラウザ!, "https://www.selenium.dev/selenium/web/web-form.html")
+    private WebForm画面() : base(テスト共通.ブラウザ!.先頭画面, "https://www.selenium.dev/selenium/web/web-form.html")
     {
         this.アンカー = アンカー.ByTagName(this, "a");
         this.Checkedチェックボックス = チェックボックス.ById(this, "my-check-1");

@@ -19,6 +19,10 @@ public class テキストボックス : フォーム要素
     {
         return new テキストボックス(親画面.Idで要素を探す(id));
     }
+    public static テキストボックス ByName(画面 親画面, string name)
+    {
+        return new テキストボックス(親画面.Nameで要素を探す(name));
+    }
     public static テキストボックス ByTagName(画面 親画面, string tagName)
     {
         return new テキストボックス(親画面.TagNameで要素を探す(tagName));
@@ -33,7 +37,7 @@ public class テキストボックス : フォーム要素
         インターフェース.キー入力を送る(テキスト);
     }
 
-    public String? 文字列
+    public new String? 文字列
     {
         set { インターフェース.キー入力を送る(value!); }
         get { return インターフェース.入力文字列; }

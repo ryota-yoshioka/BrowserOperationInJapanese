@@ -41,6 +41,13 @@ public class Playwright要素 : 画面要素インターフェース
         return element.GetAttributeAsync(attributeName).Result;
     }
 
+    public String Css属性を取得する(String cssName)
+    {
+        return element.EvaluateAsync<string>(
+            $"e => window.getComputedStyle(e).getPropertyValue('{cssName}')"
+        ).Result;
+    }
+
     public bool 選択されている => (element.GetAttributeAsync("selected").Result != null);
     public bool チェックされている => element.IsCheckedAsync().Result;
 

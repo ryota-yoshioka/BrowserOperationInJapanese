@@ -17,6 +17,10 @@ public class チェックボックス : フォーム要素
     {
         return new チェックボックス(親画面.Idで要素を探す(id));
     }
+    public static チェックボックス ByName(画面 親画面, string name)
+    {
+        return new チェックボックス(親画面.Nameで要素を探す(name));
+    }
     public static チェックボックス ByTagName(画面 親画面, string tagName)
     {
         return new チェックボックス(親画面.TagNameで要素を探す(tagName));
@@ -56,6 +60,6 @@ public class チェックボックス : フォーム要素
     //     get { return element.Text; }
     // }
 
-    public Boolean 選択されている => インターフェース.チェックされている;
+    public new Boolean 選択されている => インターフェース.チェックされている;
     public Boolean 選択されていない => !インターフェース.チェックされている;
 }

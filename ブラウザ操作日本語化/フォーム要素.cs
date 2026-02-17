@@ -12,16 +12,23 @@ public class フォーム要素
         this.インターフェース = インターフェース;
     }
 
-    
+    public bool 表示されている => インターフェース.表示されている;
+
+    public bool 有効である => インターフェース.有効である;
+
+    public bool 選択されている => インターフェース.選択されている;
+
+    public String Css属性を取得する(String css属性名) => インターフェース.Css属性を取得する(css属性名);
+
     // public void クリックする()
     // {
     //     インターフェース.クリックする();
     // }
 
-    // public string テキスト
-    // {
-    //     get { return インターフェース.テキスト; }
-    // }
+    public string 文字列
+    {
+        get { return インターフェース.テキスト; }
+    }
 
     // public void テキストを入力する(string テキスト)
     // {

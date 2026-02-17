@@ -25,11 +25,11 @@ public sealed class ドロップダウンテスト
     }
 
     private bool Twoが選択されている =>
-        this.画面.ドロップダウン.選択されたオプション.文字列 == "Two";
+        this.画面.ドロップダウン.選択されたオプション!.文字列 == "Two";
     private bool Fourが選択されている =>
-        this.画面.ドロップダウン.選択されたオプション.文字列 == "Four";
+        this.画面.ドロップダウン.選択されたオプション!.文字列 == "Four";
     private bool StillLearningHowToCountApparentlyが選択されている =>
-        this.画面.ドロップダウン.選択されたオプション.文字列 == "Still learning how to count, apparently";
+        this.画面.ドロップダウン.選択されたオプション!.文字列 == "Still learning how to count, apparently";
 
     [TestMethod]
     public void SelectOption()

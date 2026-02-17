@@ -85,14 +85,4 @@ public class ドロップダウン : フォーム要素
     // {
     //     get { return element.Text; }
     // }
-
-    public Boolean 選択されている
-    {
-        get { return インターフェース.選択されている; }
-    }
-
-    public Boolean 選択されていない
-    {
-        get { return !インターフェース.選択されている; }
-    }
 }

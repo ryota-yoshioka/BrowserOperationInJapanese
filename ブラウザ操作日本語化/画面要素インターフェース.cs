@@ -17,6 +17,7 @@ public interface 画面要素インターフェース
     void キー入力を送る(String キー入力);
 
     String? 属性を取得する(String 属性名);
+    String Css属性を取得する(string CSS属性名);
 
     bool 選択されている { get; }
     bool チェックされている { get; }

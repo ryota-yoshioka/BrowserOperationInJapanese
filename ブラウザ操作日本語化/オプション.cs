@@ -26,14 +26,9 @@ public class オプション : フォーム要素
         }
     }
 
-    public String 文字列
+    public new String 文字列
     {
         get { return インターフェース.オプションの表示文字列; }
-    }
-
-    public Boolean 選択されている
-    {
-        get { return インターフェース.選択されている; }
     }
 
     public Boolean 選択されていない
