@@ -6,11 +6,11 @@ namespace ブラウザ操作日本語化;
 /// <summary>
 /// Web要素のインターフェース（Selenium版）
 /// </summary>
-public class Web要素 : 画面要素インターフェース
+public class Selenium要素 : 画面要素インターフェース
 {
     private readonly IWebElement element;
 
-    public Web要素(IWebElement element)
+    public Selenium要素(IWebElement element)
     {
         this.element = element;
     }
@@ -53,19 +53,19 @@ public class Web要素 : 画面要素インターフェース
     public IList<画面要素インターフェース> 選択肢のリスト()
     {
         var selectElement = new SelectElement(element);
-        return [.. selectElement.Options.Select(opt => new Web要素(opt))];
+        return [.. selectElement.Options.Select(opt => new Selenium要素(opt))];
     }
     public IList<画面要素インターフェース> 全ての選択された選択肢()
     {
         var selectElement = new SelectElement(element);
-        return [.. selectElement.AllSelectedOptions.Select(opt => new Web要素(opt))];
+        return [.. selectElement.AllSelectedOptions.Select(opt => new Selenium要素(opt))];
     }
     public 画面要素インターフェース? 選択された選択肢
     {
         get
         {
             var selectElement = new SelectElement(element);
-            return new Web要素(selectElement.SelectedOption);
+            return new Selenium要素(selectElement.SelectedOption);
         }
     }
     public bool 複数選択可能 => new SelectElement(element).IsMultiple;
@@ -89,7 +89,7 @@ public class Web要素 : 画面要素インターフェース
     {
         get
         {
-            return new Web要素(new SelectElement(element).WrappedElement);
+            return new Selenium要素(new SelectElement(element).WrappedElement);
         }
     }
     public void 全て選択解除する()

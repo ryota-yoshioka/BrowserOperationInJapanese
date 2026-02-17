@@ -2,11 +2,11 @@ using OpenQA.Selenium;
 
 namespace ブラウザ操作日本語化;
 
-public class Webドライバ : ドライバーインターフェース, 画面インターフェース
+public class Seleniumドライバ : ドライバーインターフェース, 画面インターフェース
 {
     private readonly IWebDriver ドライバ;
 
-    public Webドライバ(IWebDriver ドライバ)
+    public Seleniumドライバ(IWebDriver ドライバ)
     {
         this.ドライバ = ドライバ;
     }
@@ -34,15 +34,15 @@ public class Webドライバ : ドライバーインターフェース, 画面�
     // public abstract void スクリーンショットを保存する(string ファイルパス);
     public 画面要素インターフェース Idで要素を探す(string id)
     {
-        return new Web要素(ドライバ.FindElement(By.Id(id)));
+        return new Selenium要素(ドライバ.FindElement(By.Id(id)));
     }
     public 画面要素インターフェース Nameで要素を探す(string name)
     {
-        return new Web要素(ドライバ.FindElement(By.Name(name)));
+        return new Selenium要素(ドライバ.FindElement(By.Name(name)));
     }
     public 画面要素インターフェース TagNameで要素を探す(string tagName)
     {
-        return new Web要素(ドライバ.FindElement(By.TagName(tagName)));
+        return new Selenium要素(ドライバ.FindElement(By.TagName(tagName)));
     }
     // public abstract void 要素をクリックする(string セレクタ);
     // public abstract void テキストを入力する(string セレクタ, string テキスト);

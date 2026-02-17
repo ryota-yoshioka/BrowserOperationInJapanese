@@ -3,7 +3,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace ブラウザ操作日本語化;
 
-public class Chromeドライバ : Webドライバ
+public class Chromeドライバ : Seleniumドライバ
 {
     public Chromeドライバ() : base(new ChromeDriver())
     {

@@ -3,7 +3,7 @@ using OpenQA.Selenium.Edge;
 
 namespace ブラウザ操作日本語化;
 
-public class Edgeドライバ : Webドライバ
+public class Edgeドライバ : Seleniumドライバ
 {
     public Edgeドライバ() : base(new EdgeDriver())
     {
